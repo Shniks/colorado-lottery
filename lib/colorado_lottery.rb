@@ -43,6 +43,9 @@ class ColoradoLottery
   end
 
   def draw_winners
+    current_contestants.each do |game, players|
+      winners << { players.sample => game.name }
+    end
     Time.now.strftime("%Y-%m-%d")
   end
 
