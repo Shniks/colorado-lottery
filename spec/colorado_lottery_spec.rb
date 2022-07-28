@@ -93,7 +93,7 @@ RSpec.describe ColoradoLottery do
     @lottery.register_contestant(@frederick, @mega_millions)
     @lottery.register_contestant(@winston, @cash_5)
     @lottery.register_contestant(@winston, @mega_millions)
-    result = {"Pick 4" => [@alexander], "Mega Millions" => [@alexander, @frederick, @winstron], "Cash 5" => [@winston]}
+    result = {"Pick 4" => [@alexander], "Mega Millions" => [@alexander, @frederick, @winston], "Cash 5" => [@winston]}
 
     expect(@lottery.registered_contestants).to eq(result)
   end
