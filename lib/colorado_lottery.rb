@@ -5,7 +5,7 @@ class ColoradoLottery
   attr_reader :registered_contestants,  :winners, :current_contestants
 
   def initialize
-    @registered_contestants = Hash.new
+    @registered_contestants = Hash.new{ |k, v| k[v] = [] }
     @winners = []
     @current_contestants = {}
   end

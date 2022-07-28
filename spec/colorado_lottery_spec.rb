@@ -73,4 +73,10 @@ RSpec.describe ColoradoLottery do
     expect(@lottery.can_register?(@frederick, @pick_4)).to eq false   #added additional assertion for full test coverage
   end
 
+  it 'should be able to register a contestant' do
+    @lottery.register_contestant(@alexander, @pick_4)
+
+    expect(@lottery.registered_contestants).to eq({"Pick 4" => [@alexander]})
+  end
+
 end
