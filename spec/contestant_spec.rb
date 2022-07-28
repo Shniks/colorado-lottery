@@ -25,7 +25,7 @@ RSpec.describe Contestant do
     expect(@alexander.state_of_residence).to eq ('CO')
     expect(@alexander.spending_money).to eq 10
     expect(@alexander.game_interests).to eq ([])
-    expect(@alexander).out_of_state?.to eq false 
+    expect(@alexander.out_of_state?).to eq false 
   end
 
 
