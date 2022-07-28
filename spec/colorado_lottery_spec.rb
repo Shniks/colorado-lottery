@@ -98,7 +98,7 @@ RSpec.describe ColoradoLottery do
     expect(@lottery.registered_contestants).to eq(result)
   end
 
-  it 'should be able to register grace as a contestant' do
+  it 'should be able to find list of elegible contestants' do
     @lottery.register_contestant(@alexander, @pick_4)
     @lottery.register_contestant(@alexander, @mega_millions)
     @lottery.register_contestant(@frederick, @mega_millions)
@@ -122,6 +122,8 @@ RSpec.describe ColoradoLottery do
     result = {"Pick 4" => [@alexander, grace], "Mega Millions" => [@alexander, @frederick, @winston, grace], "Cash 5" => [@winston, grace]}
 
     expect(@lottery.registered_contestants).to eq(result)
+    expect(@lottery.eligible_contestants(@pick_4)).to eq([@alexander, grace])
+    expect(@lottery.eligible_contestants(@cash_5)).to eq([@winston, grace])
   end
 
 end
