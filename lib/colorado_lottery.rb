@@ -15,4 +15,14 @@ class ColoradoLottery
     false
   end
 
+  def can_register?(contestant, game)
+    return true if interested_and_18?(contestant, game) && check_residency_and_game_status(contestant, game)
+    false
+  end
+
+  def check_residency_and_game_status(contestant, game)
+    return true if contestant.out_of_state? == false || game.national_drawing == true
+    false
+  end
+
 end

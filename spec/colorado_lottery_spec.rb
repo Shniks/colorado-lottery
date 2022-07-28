@@ -42,6 +42,7 @@ RSpec.describe ColoradoLottery do
     @alexander.add_game_interest('Pick 4')
     @alexander.add_game_interest('Mega Millions')
     @frederick.add_game_interest('Mega Millions')
+    @frederick.add_game_interest('Pick 4')
     @winston.add_game_interest('Cash 5')
     @winston.add_game_interest('Mega Millions')
     @benjamin.add_game_interest('Mega Millions')
@@ -69,6 +70,7 @@ RSpec.describe ColoradoLottery do
     expect(@lottery.can_register?(@frederick, @mega_millions)).to eq true
     expect(@lottery.can_register?(@benjamin, @mega_millions)).to eq false
     expect(@lottery.can_register?(@frederick, @cash_5)).to eq false
+    expect(@lottery.can_register?(@frederick, @pick_4)).to eq false   #added additional assertion for full test coverage
   end
 
 end
