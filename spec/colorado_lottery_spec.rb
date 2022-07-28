@@ -171,8 +171,44 @@ RSpec.describe ColoradoLottery do
               @mega_millions => ["Alexander Aigades", "Frederick Douglass", "Grace Hopper"],
               @pick_4 => ["Alexander Aigades", "Grace Hopper"]
               }
-              
+
     expect(@lottery.current_contestants).to eq(result)
+  end
+
+  it 'should be able to picks and announce winners for drawings' do
+    @lottery.register_contestant(@alexander, @pick_4)
+    @lottery.register_contestant(@alexander, @mega_millions)
+    @lottery.register_contestant(@frederick, @mega_millions)
+    @lottery.register_contestant(@winston, @cash_5)
+    @lottery.register_contestant(@winston, @mega_millions)
+
+    grace = Contestant.new({
+                            first_name: 'Grace',
+                            last_name: 'Hopper',
+                            age: 20,
+                            state_of_residence: 'CO',
+                            spending_money: 20
+                            })
+
+    grace.add_game_interest('Mega Millions')
+    grace.add_game_interest('Cash 5')
+    grace.add_game_interest('Pick 4')
+
+    @lottery.register_contestant(grace, @mega_millions)
+    @lottery.register_contestant(grace, @cash_5)
+    @lottery.register_contestant(grace, @pick_4)
+
+    @lottery.charge_contestants(@cash_5)
+    @lottery.charge_contestants(@mega_millions)
+    @lottery.charge_contestants(@pick_4)
+
+    result = @lottery.draw_winners
+
+    expect(result).to be_a String
+    expect(@lottery.winners.class).to be_a Array
+    expect(@lottery.winners.first.class).to be_a Hash
+    expect(@lottery.winners.last.class).to be_a Hash
+    expect(@lottery.winners.length).to be 3
   end
 
 end
