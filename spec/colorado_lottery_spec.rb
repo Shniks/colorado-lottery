@@ -159,11 +159,20 @@ RSpec.describe ColoradoLottery do
     result = {@cash_5 => ["Winston Churchill", "Grace Hopper"],
               @mega_millions => ["Alexander Aigades", "Frederick Douglass", "Grace Hopper"]
               }
+
     expect(@lottery.current_contestants).to eq(result)
     expect(grace.spending_money).to eq 14
     expect(@winston.spending_money).to eq 4
     expect(@alexander.spending_money).to eq 5
     expect(@frederick.spending_money).to eq 15
+
+    @lottery.charge_contestants(@pick_4)
+    result = {@cash_5 => ["Winston Churchill", "Grace Hopper"],
+              @mega_millions => ["Alexander Aigades", "Frederick Douglass", "Grace Hopper"],
+              @pick_4 => ["Alexander Aigades", "Grace Hopper"]
+              }
+              
+    expect(@lottery.current_contestants).to eq(result)
   end
 
 end

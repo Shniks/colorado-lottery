@@ -40,7 +40,6 @@ class ColoradoLottery
       contestant.spending_money -= game.cost
       current_contestants[game] << contestant.full_name
     end
-
   end
 
 end
