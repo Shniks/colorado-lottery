@@ -25,4 +25,8 @@ class ColoradoLottery
     false
   end
 
+  def register_contestant(contestant, game)
+    registered_contestants[game.name] << contestant 
+  end
+
 end
