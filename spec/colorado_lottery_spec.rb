@@ -79,4 +79,12 @@ RSpec.describe ColoradoLottery do
     expect(@lottery.registered_contestants).to eq({"Pick 4" => [@alexander]})
   end
 
+  it 'should be able to register multiple games for a contestant' do
+    @lottery.register_contestant(@alexander, @pick_4)
+    @lottery.register_contestant(@alexander, @mega_millions)
+    result = {"Pick 4" => [@alexander], "Mega Millions" => [@alexander]}
+
+    expect(@lottery.registered_contestants).to eq(result)
+  end
+
 end
