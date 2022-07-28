@@ -4,7 +4,7 @@ require './spec/spec_helper'
 require './lib/game'
 
 RSpec.describe Game do
-  it 'should belong to a class' do
+  it 'should be an instance of a class' do
     pick_4 = Game.new('Pick 4', 2)
     mega_millions = Game.new('Mega Millions', 5, true)
 
@@ -20,6 +20,6 @@ RSpec.describe Game do
     expect(mega_millions.cost).to eq 5
     expect(mega_millions.national_drawing?).to eq true
     expect(pick_4.national_drawing?).to eq false
-  end 
+  end
 
 end
