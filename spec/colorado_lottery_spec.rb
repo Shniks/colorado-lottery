@@ -14,7 +14,10 @@ RSpec.describe ColoradoLottery do
     expect(@lottery).to be_a ColoradoLottery
   end
 
-
-
+  it 'should have attributes' do
+    expect(@lottery.registered_contestants).to eq({})
+    expect(@lottery.winners).to eq([])
+    expect(@lottery.current_contestants).to eq({})
+  end
 
 end
