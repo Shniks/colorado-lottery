@@ -205,9 +205,9 @@ RSpec.describe ColoradoLottery do
     result = @lottery.draw_winners
 
     expect(result).to be_a String
-    expect(@lottery.winners.class).to be_a Array
-    expect(@lottery.winners.first.class).to be_a Hash
-    expect(@lottery.winners.last.class).to be_a Hash
+    expect(@lottery.winners).to be_a Array
+    expect(@lottery.winners.first).to be_a Hash
+    expect(@lottery.winners.last).to be_a Hash
     expect(@lottery.winners.length).to be 3
   end
 

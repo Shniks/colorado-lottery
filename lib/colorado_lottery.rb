@@ -42,4 +42,8 @@ class ColoradoLottery
     end
   end
 
+  def draw_winners
+    Time.now.strftime("%Y-%m-%d")
+  end
+
 end
