@@ -175,7 +175,7 @@ RSpec.describe ColoradoLottery do
     expect(@lottery.current_contestants).to eq(result)
   end
 
-  it 'should be able to picks and announce winners for drawings' do
+  it 'should be able to pick and announce winners for drawings' do
     @lottery.register_contestant(@alexander, @pick_4)
     @lottery.register_contestant(@alexander, @mega_millions)
     @lottery.register_contestant(@frederick, @mega_millions)
@@ -208,7 +208,25 @@ RSpec.describe ColoradoLottery do
     expect(@lottery.winners).to be_a Array
     expect(@lottery.winners.first).to be_a Hash
     expect(@lottery.winners.last).to be_a Hash
-    expect(@lottery.winners.length).to be 3
+    expect(@lottery.winners.length).to eq 3
+
+    winners_stub = [{"Grace Hopper" => "Pick 4"},
+                    {"Winston Churchill" => "Cash 5"},
+                    {"Frederick Douglass" => "Mega Millions"}]
+
+    date_stub = "2022-04-07"
+
+    allow(@lottery).to receive(:winners).and_return(winners_stub) #Created stub for winners
+    allow(@lottery).to receive(:date_of_drawing).and_return(date_stub) #Created stub for date
+
+    result = @lottery.announce_winner("Pick 4")
+    expect(result).to eq("Grace Hopper won the Pick 4 on 04/07")
+
+    result = @lottery.announce_winner("Cash 5")
+    expect(result).to eq("Winston Churchill won the Cash 5 on 04/07")
+
+    result = @lottery.announce_winner("Mega Millions")
+    expect(result).to eq("Frederick Douglass won the Mega Millions on 04/07")
   end
 
 end

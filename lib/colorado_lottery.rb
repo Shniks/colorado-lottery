@@ -1,5 +1,3 @@
-require 'pry'
-
 class ColoradoLottery
 
   attr_reader :registered_contestants,  :winners, :current_contestants
@@ -43,10 +41,30 @@ class ColoradoLottery
   end
 
   def draw_winners
+    find_winners
+    date_of_drawing
+  end
+
+  def find_winners
     current_contestants.each do |game, players|
       winners << { players.sample => game.name }
     end
+  end
+
+  def date_of_drawing
     Time.now.strftime("%Y-%m-%d")
+  end
+
+  def announce_winner(game)
+    "#{find_game_winner(game)[game]} won the #{game} on #{short_date}"
+  end
+
+  def find_game_winner(game)
+    winners.select { | winner | winner.values.first == game }.first.invert
+  end
+
+  def short_date
+    date_of_drawing[-5..-1].gsub("-", "/")
   end
 
 end
