@@ -8,6 +8,10 @@ class Game
     @national_drawing = national_drawing
   end
 
+  def national_drawing?
+    national_drawing
+  end 
+
 
 
 end
