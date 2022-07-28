@@ -124,6 +124,36 @@ RSpec.describe ColoradoLottery do
     expect(@lottery.registered_contestants).to eq(result)
     expect(@lottery.eligible_contestants(@pick_4)).to eq([@alexander, grace])
     expect(@lottery.eligible_contestants(@cash_5)).to eq([@winston, grace])
+    expect(@lottery.eligible_contestants(@mega_millions)).to eq([@alexander, @frederick, @winston, grace])
+  end
+
+  it 'should be able to charge contestants for a game' do
+    @lottery.register_contestant(@alexander, @pick_4)
+    @lottery.register_contestant(@alexander, @mega_millions)
+    @lottery.register_contestant(@frederick, @mega_millions)
+    @lottery.register_contestant(@winston, @cash_5)
+    @lottery.register_contestant(@winston, @mega_millions)
+
+    grace = Contestant.new({
+                            first_name: 'Grace',
+                            last_name: 'Hopper',
+                            age: 20,
+                            state_of_residence: 'CO',
+                            spending_money: 20
+                            })
+
+    grace.add_game_interest('Mega Millions')
+    grace.add_game_interest('Cash 5')
+    grace.add_game_interest('Pick 4')
+    @lottery.register_contestant(grace, @mega_millions)
+    @lottery.register_contestant(grace, @cash_5)
+    @lottery.register_contestant(grace, @pick_4)
+    @lottery.charge_contestants(@cash_5)
+    result = {@cash_5 => ["Winston Churchill", "Grace Hopper"]}
+
+    expect(@lottery.current_contestants).to eq(result)
+    expect(grace.spending_money).to eq 19
+    expect(@winston.spending_money).to eq 4
   end
 
 end
