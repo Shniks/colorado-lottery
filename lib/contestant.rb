@@ -15,5 +15,9 @@ class Contestant
     return true if state_of_residence != 'CO'
     false
   end
-  
+
+  def add_game_interest(game)
+    game_interests << game
+  end 
+
 end

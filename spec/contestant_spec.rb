@@ -32,7 +32,7 @@ RSpec.describe Contestant do
     @alexander.add_game_interest('Mega Millions')
     @alexander.add_game_interest('Pick 4')
 
-    expect(@alexander.game_interests).to eq(['Mega Millions', Pick 4')
+    expect(@alexander.game_interests).to eq(['Mega Millions', 'Pick 4'])
   end
 
 end
