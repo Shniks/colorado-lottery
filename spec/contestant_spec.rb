@@ -4,7 +4,7 @@ require './spec/spec_helper'
 require './lib/contestant'
 
 RSpec.describe Contestant do
-
+  
   before do
     @alexander = Contestant.new({first_name: 'Alexander',
                                 last_name: 'Aigiades',
